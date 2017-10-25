@@ -1,0 +1,72 @@
+<ons-page id = databaseadmin>
+    <ons-toolbar>
+    <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center">投稿画面</div>
+    </ons-toolbar>
+     
+       <img id = 'viewgetphoto' width=150 height=150><br>
+       <ons-button id= 'snppht' onclick='snapphoto()' modifier='light'>SnapImage</ons-button><br>
+       <ons-button id= 'gtpht' onclick='getphoto()' modifier='light'>GetImage</ons-button><br><br>
+
+  <p>Title<p>
+ <input type = 'text' id = 'datatitle'>
+  <p>Information<p>
+ <input type = 'text' id = 'datainfo'>
+ <br>
+ <br>
+ 
+ <div id = "photodata">
+ <p>id = photodata</p>
+ <p>撮影時刻<p>
+    <select name = "phototime" value = "phototime" id = "phototime">
+      <option value = "morning">朝</option><option value = "noon">昼<option value = "night">夜</option>
+    </select>
+ <p>撮影時期<p>
+    <select name = "photoseason" value = "photoseason" id = "photoseason">
+      <option value = "spring">春</option><option value = "summer">夏</option><option value = "fall">秋</option><option value = "winter">冬</option>
+    </select>
+ </div><br>
+
+
+ <p>id = spotdata</p>
+  <select name="spot" value = "Spot" id = "selectspot" onChange = "showspotform()" >
+  <option>スポットを選択</option>
+ </select>
+ 
+
+<div id = spotdata>
+  　　<p>緯度<p>
+ 　　　　　　<input type = 'text' id = 'datamapx'>
+  　　　<p>経度<p>
+ 　　　　　　<input type = 'text' id = 'datamapy'><br>
+ 　   <ons-button id = getloc modifier="light" onclick = "myNavigator.pushPage('checkloc.html')">位置を選択</ons-button><br>
+
+      <p>開店時間</p>
+           <select name = "opentime" value = "opentime" id = "opentime">
+                 <option>無し</option><option value = "0">０時</option><option value = "100">1時</option><option value = "200">2時</option><option value = "300">3時</option><option value = "400">4時</option>
+                  <option value = "500">5時</option><option value = "600">6時</option><option value = "700">7時</option><option value = "800">8時</option><option value = "900">9時</option><option value = "1000">10時</option>
+                  <option value = "1100">11時</option><option value = "1200">12時</option><option value = "1300">13時</option><option value = "1400">14時</option><option value = "1500">15時</option><option value = "1600">16時</option>
+                 <option value = "1700">17時</option><option value = "1800">18時</option><option value = "1900">19時</option><option value = "2000">20時</option><option value = "2100">21時</option>
+                  <option value = "2200">22時</option><option value = "2300">23時</option>
+              </select>
+ 
+ 
+     <p>閉店時間<p>
+             <select name = "endtime" value = "endtime" id = "endtime">
+                  <option>無し</option><option value = "0">０時</option><option value = "100">1時</option><option value = "200">2時</option><option value = "300">3時</option><option value = "400">4時</option>
+                 <option value = "500">5時</option><option value = "600">6時</option><option value = "700">7時</option><option value = "800">8時</option><option value = "900">9時</option><option value = "1000">10時</option>
+                     <option value = "1100">11時</option><option value = "1200">12時</option><option value = "1300">13時</option><option value = "1400">14時</option><option value = "1500">15時</option><option value = "1600">16時</option>
+                    <option value = "1700">17時</option><option value = "1800">18時</option><option value = "1900">19時</option><option value = "2000">20時</option><option value = "2100">21時</option>
+                     <option value = "2200">22時</option><option value = "2300">23時</option>
+            </select>
+ 
+     <p>坂を登る<p>
+            <input type = 'checkbox' id = 'dataslope'>
+</div>
+  
+<br>
+<br>
+<ons-button modifier="light" onclick="">InsertData</ons-button><br><br>
+<ons-button modifier="light" onclick="init()">DeleteTable</ons-button>
+</ons-page>
+

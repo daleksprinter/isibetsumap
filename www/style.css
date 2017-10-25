@@ -1,0 +1,71 @@
+.unselected {
+display: inline-block;
+padding: 0.5em 1em;
+text-decoration: none;
+color: #67c5ff;
+border: dashed 1px #67c5ff;
+border-radius: 3px;
+transition: .4s;
+}
+.selected{
+display: inline-block;
+padding: 0.5em 1em;
+text-decoration: none;
+background: #668ad8;/*ボタン色*/ color: #FFF;
+border-bottom: solid 3px #627295;
+border-radius: 3px;
+}
+
+
+.unselected:active {
+position: relative;
+display: inline-block;
+font-weight: bold;
+padding: 0.5em 1em;
+text-decoration: none;
+border-left: solid 4px #668ad8;
+border-right: solid 4px #668ad8;
+color: #668ad8;
+text-shadow: 0 0 5px white;
+padding: 0.5em 1em;
+background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+transition: .4s;
+}
+
+.carousel  {
+    position:absolute;
+    top:450px;
+  /*  height: 130px;
+    width:370;*/
+    margin: 10px 0;
+     box-shadow:5px 5px 10px;
+     border:1px solid #000;
+}
+
+ons-carousel-item {
+    background: #eeeeee;
+    /*width:370;*/
+}
+#rootmap{
+    width: 375px;
+    height: 450px;
+}
+
+.txt{
+     position:absolute;
+    top: 0px;
+    left :200px;
+    
+  
+}
+.button1{
+   text-align:center;
+}
+.view{
+    -webkit-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+    -moz-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+    -o-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+    -ms-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+    filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
+}

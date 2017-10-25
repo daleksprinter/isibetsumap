@@ -1,0 +1,14 @@
+<ons-page id = home>
+    <ons-toolbar>
+        <div class="center">石別マップ</div>
+        <div class="right" style="line-height: 44px">
+        <ons-button id = 'refine' modifier="quiet" onclick="myNavigator.pushPage('setting.html')">絞り込み</ons-button>
+        </div>
+    </ons-toolbar><br>
+    
+        <div id = photo> </div><br>
+        <div class = 'button1'><ons-button id = "spot" onclick = "spot_select()" modifier="light">コース選択</ons-button></div>
+        <ons-button id = "done" style="display: none;" onclick = "done()">決定</ons-button>
+        <ons-button id = "cancel" style="display: none;" onclick = "cancel()">キャンセル</ons-button>
+</ons-page>
+
