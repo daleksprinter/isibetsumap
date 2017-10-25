@@ -90,7 +90,7 @@ document.addEventListener('pageinit',function(page){
    
        //マップ描画
        root_map = new google.maps.Map($('#rootmap')[0], {
-        zoom: 9,       // ズームレベル
+        zoom: 14,       // ズームレベル
         center: latlng     // 中心地を指定
         });
         directionsRenderer.setMap(root_map);
@@ -180,7 +180,7 @@ var optionObj = {};
 
 //２点間のルートをマップに描画
 function routecalc(position){
- /* // 開始地点の座標を指定
+  // 開始地点の座標を指定
         var start = new google.maps.LatLng(position.coords.latitude,position.coords.latitude); 
    // 目的地点の座標を指定
         var goal = new google.maps.LatLng(list[key_val[carousel.getActiveIndex()]].latitude,list[key_val[carousel.getActiveIndex()]].longitude);
@@ -201,5 +201,5 @@ function routecalc(position){
              directionsRenderer.setDirections(result);
              } 
         }); 
-        */
+        
 }

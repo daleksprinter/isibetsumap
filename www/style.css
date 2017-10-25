@@ -16,7 +16,7 @@ img{
 .unselected{
 background-color: Transparent;
 background-repeat:no-repeat;
-border: solid 1px transparent;
+border: solid 3px transparent;
 overflow: hidden;
 margin : 3px;
 padding : 0px;
@@ -27,7 +27,7 @@ padding : 0px;
 .selected{
 background-color: Transparent;
 background-repeat:no-repeat;
-border:solid 1px #80bf01;
+border:solid 3px #80bf01;
 overflow: hidden;
 margin : 3px;
 padding : 0px;
