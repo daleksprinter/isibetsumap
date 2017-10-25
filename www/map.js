@@ -2,6 +2,7 @@ var list={};//コース選択されたスポットデータのリスト
 var list_count;
 var findLi;//サムネイル要素
 var key_val = {};//インデックスとキーの連想配列
+var val_key={};
 var index;
 
 function spot_select(){
@@ -81,6 +82,7 @@ var directionsService = new google.maps.DirectionsService();
 
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "map"){
+     index=0;
        //初期マップの中心地用の座標
        var lati = 41.733614;
        var long = 140.578877;
@@ -106,12 +108,13 @@ document.addEventListener('pageinit',function(page){
       //リストの数だけカローセルアイテムを生成
      for(var key in list){
          key_val[index] = key;
+         val_key[key]=index;
          index++;
          
          var carousel_item = document.createElement('ons-carousel-item');
        
        //長押しでカローセル削除処理
-        /*carousel_item.addEventListener('touchstart', function(event) {
+        carousel_item.addEventListener('touchstart', function(event) {
             start = new Date().getTime();
         });
         
@@ -122,12 +125,12 @@ document.addEventListener('pageinit',function(page){
             longpress = (end - start < 300) ? false : true;
             
             if(longpress){
-                data = list[this.id];
+              //  data = list[this.id];
                 this.remove();
                 carousel.refresh(); 
             }
         }
-        });*/  
+        });
          
          carousel_item.appendChild(img(list[key].imagedata,130,130));
       　 carousel_item.appendChild(text(list[key].title,'txt'));
@@ -139,7 +142,12 @@ document.addEventListener('pageinit',function(page){
         lati = list[key].latitude;
         long = list[key].longitude;
         latlng = new google.maps.LatLng(lati,long);
-        var marker = new google.maps.Marker({position: latlng, map: root_map});
+   
+        var marker = new google.maps.Marker({position: latlng, map: root_map,id:index});
+        marker.addListener( "click", function ( argument ) {
+            console.log( this.get('id') );
+            carousel.setActiveIndex(this.get('id'))
+        }) ;
 
      }
      
@@ -172,12 +180,12 @@ var optionObj = {};
 
 //２点間のルートをマップに描画
 function routecalc(position){
-   /* 開始地点の座標を指定*/
+ /* // 開始地点の座標を指定
         var start = new google.maps.LatLng(position.coords.latitude,position.coords.latitude); 
-   /* 目的地点の座標を指定*/
-        var goal = new google.maps.LatLng( Number(list[key_val[carousel.getActiveIndex()]].latitude), Number(list[key_val[carousel.getActiveIndex()]].longitude) );
+   // 目的地点の座標を指定
+        var goal = new google.maps.LatLng(list[key_val[carousel.getActiveIndex()]].latitude,list[key_val[carousel.getActiveIndex()]].longitude);
  
-        /* origin と destination に変数を指定 */
+        // origin と destination に変数を指定
         var request = { 
         origin:start,
         destination:goal,
@@ -186,11 +194,12 @@ function routecalc(position){
  　　　　
         directionsService.route(request, function(result, status) { 
             console.log(status);
-              /* ルート検索に成功したら以下の処理 */
+            
               if (status == google.maps.DirectionsStatus.OK) { 
  
-             /* ルートをマップ上に表示 */ 
+          
              directionsRenderer.setDirections(result);
              } 
         }); 
+        */
 }

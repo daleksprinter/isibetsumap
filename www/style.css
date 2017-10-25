@@ -1,4 +1,4 @@
-.unselected {
+/*.unselected {
 display: inline-block;
 padding: 0.5em 1em;
 text-decoration: none;
@@ -6,17 +6,35 @@ color: #67c5ff;
 border: dashed 1px #67c5ff;
 border-radius: 3px;
 transition: .4s;
+background-color: transparent;
+}*/
+img{
+    margin: 0;
+	padding: 0;
+    vertical-align: bottom;
 }
+.unselected{
+background-color: Transparent;
+background-repeat:no-repeat;
+border: solid 1px transparent;
+overflow: hidden;
+margin : 3px;
+padding : 0px;
+}
+
+
+
 .selected{
-display: inline-block;
-padding: 0.5em 1em;
-text-decoration: none;
-background: #668ad8;/*ボタン色*/ color: #FFF;
-border-bottom: solid 3px #627295;
-border-radius: 3px;
+background-color: Transparent;
+background-repeat:no-repeat;
+border:solid 1px #80bf01;
+overflow: hidden;
+margin : 3px;
+padding : 0px;
 }
 
 
+/*
 .unselected:active {
 position: relative;
 display: inline-block;
@@ -31,7 +49,7 @@ padding: 0.5em 1em;
 background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
 background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
 transition: .4s;
-}
+}*/
 
 .carousel  {
     position:absolute;

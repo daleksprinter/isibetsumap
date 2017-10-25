@@ -9,7 +9,7 @@ document.addEventListener('pageinit',function(page){
                  var l= rs.rows.length;
                  for(var i=0;i<l;i++){
                   //作ったサムネイル要素を追加
-                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,94,94) );
+                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-22)/3,(screen.width-22)/3));
                  }
              });
      });  
