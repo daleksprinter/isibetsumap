@@ -128,6 +128,7 @@ document.addEventListener('pageinit',function(page){
               //  data = list[this.id];
                 this.remove();
                 carousel.refresh(); 
+                
             }
         }
         });
@@ -181,7 +182,7 @@ var optionObj = {};
 //２点間のルートをマップに描画
 function routecalc(position){
   // 開始地点の座標を指定
-        var start = new google.maps.LatLng(position.coords.latitude,position.coords.latitude); 
+        var start = new google.maps.LatLng(position.coords.latitude,position.coords.longitude); 
    // 目的地点の座標を指定
         var goal = new google.maps.LatLng(list[key_val[carousel.getActiveIndex()]].latitude,list[key_val[carousel.getActiveIndex()]].longitude);
  
