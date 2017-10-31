@@ -1,3 +1,4 @@
+ //hogehoge
 //データベースからサムネイルを作成
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "home"){
@@ -14,8 +15,7 @@ document.addEventListener('pageinit',function(page){
                  }
              });
      });  
-   } 
-});
+ 
 
 
 function create_thumbnail(id,src,width,height){
