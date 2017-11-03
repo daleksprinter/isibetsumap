@@ -1,10 +1,7 @@
- //hogehoge
-//データベースからサムネイルを作成
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "home"){
 　　　　$("#photo").empty();//子要素の初期化
         var db = openDatabase("database", "1.0", "testdatabase", 1000000);
-        //a
         db.transaction(
          function(tr){
              tr.executeSql("SELECT id,imagedata FROM Spot",[],function(rt,rs){
@@ -14,10 +11,8 @@ document.addEventListener('pageinit',function(page){
                   $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-36)/3,(screen.width-36)/3));
                  }
              });
-     });  
- 
-
-
+     });
+    }});
 function create_thumbnail(id,src,width,height){
     //ボタン要素を作成
     var button = document.createElement('button');
@@ -26,9 +21,7 @@ function create_thumbnail(id,src,width,height){
     button.setAttribute('onclick','load_detail(this.id)');
     button.appendChild(img(src,width,height));
     return button;
-}
-   
-     
+}  
 function img(src,width,height){  
     var image = document.createElement('img');
     image.src = src;
@@ -36,5 +29,3 @@ function img(src,width,height){
     image.height = height;
     return image;
 }
-
-
