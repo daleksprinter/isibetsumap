@@ -73,6 +73,11 @@ width=200px;
   
 }
 .button1{
-   text-align:center;
+    position: fixed;
+    top: 70px;
+    z-index: 10;
+    width:50px;
 }
+
+
 

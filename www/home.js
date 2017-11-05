@@ -1,14 +1,18 @@
+
+
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "home"){
+
+
 　　　　$("#photo").empty();//子要素の初期化
         var db = openDatabase("database", "1.0", "testdatabase", 1000000);
         db.transaction(
          function(tr){
              tr.executeSql("SELECT id,imagedata FROM Spot",[],function(rt,rs){
                  var l= rs.rows.length;
-                 for(var i=0;i<l;i++){
+                 for(var i=0;i<l*5;i++){
                   //作ったサムネイル要素を追加
-                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-36)/3,(screen.width-36)/3));
+                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i%l).id,rs.rows.item(i%l).imagedata,(screen.width-36)/3,(screen.width-36)/3));
                  }
              });
      });
@@ -29,3 +33,4 @@ function img(src,width,height){
     image.height = height;
     return image;
 }
+
