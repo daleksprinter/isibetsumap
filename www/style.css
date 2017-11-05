@@ -54,17 +54,12 @@ transition: .4s;
 .carousel  {
     position:absolute;
     top:450px;
-  /*  height: 130px;
-    width:370;*/
-    margin: 10px 0;
-     box-shadow:5px 5px 10px;
-     border:1px solid #000;
 }
 
-ons-carousel-item {
-    background: #eeeeee;
-    /*width:370;*/
+.crsl{
+width=200px;
 }
+
 #rootmap{
     width: 375px;
     height: 450px;
@@ -80,10 +75,4 @@ ons-carousel-item {
 .button1{
    text-align:center;
 }
-.view{
-    -webkit-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
-    -moz-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
-    -o-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
-    -ms-filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
-    filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.5));
-}
+

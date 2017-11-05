@@ -112,6 +112,8 @@ document.addEventListener('pageinit',function(page){
          index++;
          
          var carousel_item = document.createElement('ons-carousel-item');
+         carousel_item.setAttribute('class','crsl');
+
        
        //長押しでカローセル削除処理
         carousel_item.addEventListener('touchstart', function(event) {
@@ -125,18 +127,27 @@ document.addEventListener('pageinit',function(page){
             longpress = (end - start < 300) ? false : true;
             
             if(longpress){
+            	this.remove();
               //  data = list[this.id];
-                this.remove();
-                carousel.refresh(); 
+             //  this.empty();
+             setImmediate(function(){
+				carousel.refresh(); 
+             })
+        
+             console.log(carousel.itemCount);
+                          
+
                 
             }
         }
         });
-         
-         carousel_item.appendChild(img(list[key].imagedata,130,130));
-      　 carousel_item.appendChild(text(list[key].title,'txt'));
+         var card = document.createElement('div');
+         card.appendChild(img(list[key].imagedata,130,130));
+         card.appendChild(text(list[key].title,'txt'));
+      　 carousel_item.appendChild(card);
       // carousel_item.appendChild(text(list[key].info,'txt')); //よくわからん
-         document.getElementById('carousel').appendChild(carousel_item);
+         carousel.appendChild(carousel_item);
+         carousel.refresh();
         
       
       //マップにマーカーを設置
