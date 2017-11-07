@@ -124,11 +124,12 @@ document.addEventListener('pageinit',function(page){
             end = new Date().getTime();
             longpress = (end - start < 300) ? false : true;
 
-            if(longpress){
+            if(longpress && index-2 > 1){
               //  data = list[this.id];
                 this.remove();
                 carousel.refresh();
-
+                index -= 1;
+                console.log(index);
             }
         }
         });
@@ -149,6 +150,7 @@ document.addEventListener('pageinit',function(page){
             console.log( this.get('id') );
             carousel.setActiveIndex(this.get('id'));
         }) ;
+        console.log(index);
 
      }
 
