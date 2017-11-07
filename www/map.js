@@ -124,7 +124,7 @@ document.addEventListener('pageinit',function(page){
             end = new Date().getTime();
             longpress = (end - start < 300) ? false : true;
 
-            if(longpress && index-2 > 1){
+            if(longpress && index > 1){
               //  data = list[this.id];
                 this.remove();
                 carousel.refresh();
@@ -151,6 +151,8 @@ document.addEventListener('pageinit',function(page){
             carousel.setActiveIndex(this.get('id'));
         }) ;
         console.log(index);
+        console.log(val_key);
+        console.log(key_val);
 
      }
 
