@@ -1,4 +1,4 @@
-img.thumbnail {
+.thumbnail {
     margin: 0;
     padding: 0;
     position: relative;
@@ -22,9 +22,17 @@ img.thumbnail {
     padding: 0px;
 }
 
+.thumbnail .disabled_checkbox .selected {
+  /* チェックボックスの位置は絶対位置にします。 */
+  position: absolute;
+  /* チェックボックスは、親要素の右上から12pxの位置に配置します。 */
+  top: 12px;
+  right: 12px;
+}
+
 /*チェックボックス*/
+/*
 .checkbox img{
-    /* チェックボックスの位置は絶対位置にします。 */
     position: absolute;
     width: 30px;
     height: 30px;
@@ -36,7 +44,7 @@ img.thumbnail {
     top: 20px;
     right: 40px;
 }
-
+*/
 
 
 /*
@@ -81,15 +89,22 @@ img.thumbnail {
 
 
 /*決定ボタン*/
-#done{
-    height:40px;
+ons-bottom-toolbar#done{
+    height:80px;
+    background:#2196F3;
+}
+
+#done-text{
+    font-size: 20px;
+    color: rgb(255,255,255);
+    
 }
 
 /*キャンセルボタン*/
 #cancel{
     width: 80px;
     height: 80px;
-    background: #ea5550;
+    background: #EF5350;
     margin-bottom: 100px;
 }
 

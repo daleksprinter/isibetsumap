@@ -6,11 +6,12 @@ var val_key={};
 var index;
 
 function spot_select(){
-    //完了、キャンセルボタンを表示
+    //完了、キャンセルボタン、チェックボタンを表示
     $('#spot')[0].style.display="none";
     $('#done')[0].style.display="inline";
     $('#cancel')[0].style.display="inline";
     $('#refine')[0].style.display="none";
+    $('#unselected')[0].style.display="inline";
     
     //リストの初期化。メモリの解放がされていない?
     for(var key in list){
@@ -23,6 +24,8 @@ function spot_select(){
      //全てのサムネイルに押下されたら選択される関数を割り当て
      for (var i = 0; i < list_count; i++){
         findLi[i].setAttribute('onclick','check(this)');
+        
+        
      }
 }
 
@@ -32,6 +35,7 @@ function check(elm){
     if(String(elm.id) in list){
         delete list[String(elm.id)];
         elm.setAttribute('class','unselected');
+        $('unselected')[0].style.display="inline";
     }else{
         //選択の処理
         var db = openDatabase("database", "1.0", "testdatabase", 1000000);
@@ -56,6 +60,8 @@ function done(){
    　　  $('#done')[0].style.display="none";
         $('#cancel')[0].style.display="none";
         $('#refine')[0].style.display="inline";
+        $('#unselected')[0].style.display="none";
+        $('#selected')[0].style.display="none";
     
         for(var i = 0; i<list_count;i++){
             findLi[i].setAttribute('class','unselected');
@@ -69,6 +75,8 @@ function cancel(){
     $('#done')[0].style.display="none";
     $('#cancel')[0].style.display="none";
     $('#refine')[0].style.display="inline";
+    $('#unselected')[0].style.display="none";
+    $('#selected')[0].style.display="none";
     
     for(var i = 0; i<list_count;i++){
         findLi[i].setAttribute('class','unselected');

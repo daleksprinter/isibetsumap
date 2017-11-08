@@ -13,10 +13,12 @@
    </ons-toolbar>
        <div class ="thumbnail">
        <div id = photo> </div><br>
-          <div class = 'checkbox'>
+    <!--      <div class = 'checkbox'>
            <img id = "unselected" style="display: none;" src="images/check0.png" >
            <img id = "selected" style="display: none;" src="images/check1.png" >
        </div>
+       -->
+    <!--   <input class="disabled_checkbox" type="checkbox" unchecked style="none"/> -->
         </div>
 
        
@@ -27,8 +29,12 @@
           <img src="images/button1.png" > 
        </ons-fab>
        
-       <ons-button id = "done" style="display: none;" modifier="large" onclick = "done()">決定</ons-button>
+      <!-- <ons-button id = "done" style="display: none;" onclick = "done()">決定</ons-button> -->
        
+   
+    <ons-bottom-toolbar id="done" style="display:none;" onClick="done()">
+     <div id = "done-text" style="text-align: center; line-height:80px">ルートを見る</div>
+    </ons-bottom-toolbar>
      <!--  <img id = "cancel" style="display: none;" onclick = "cancel()" src="images/cancel.png"> -->
     <ons-fab position="bottom right" id="cancel" style="display:none;" onClick = "cancel()">
        <ons-icon icon="fa-times" size=50px ></ons-icon>
