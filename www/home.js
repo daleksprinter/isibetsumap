@@ -12,8 +12,8 @@ document.addEventListener('pageinit',function(page){
                   $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-36)/3,(screen.width-36)/3));
                  }
              });
-     });  
-   } 
+     });
+   }
 });
 
 
@@ -26,9 +26,9 @@ function create_thumbnail(id,src,width,height){
     button.appendChild(img(src,width,height));
     return button;
 }
-   
-     
-function img(src,width,height){  
+
+
+function img(src,width,height){
     var image = document.createElement('img');
     image.src = src;
     image.width = width;
