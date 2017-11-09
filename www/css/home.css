@@ -1,0 +1,116 @@
+img.thumbnail {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.unselected {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: solid 0.1px transparent;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+.selected {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: solid 0.1px #80bf01;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*チェックボックス*/
+.checkbox img{
+    /* チェックボックスの位置は絶対位置にします。 */
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.thumbnail .checkbox{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+
+
+/*
+.checkbox img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+*/
+
+/*
+.button1 img {
+      background: rgb(200,200,200);
+    transform: translate3d(0, 0, 0);
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    position: fixed;
+    right: 1em;
+    bottom: 0em;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+*/
+
+/*ルート選択ボタン*/
+.button1{
+     width: 80px;
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+.button1 img{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    position: fixed;
+    right:0;
+    border-radius: 50%;
+}
+
+
+/*決定ボタン*/
+#done{
+    height:40px;
+}
+
+/*キャンセルボタン*/
+#cancel{
+    width: 80px;
+    height: 80px;
+    background: #ea5550;
+    margin-bottom: 100px;
+}
+
+#cancel ons-icon{
+  margin-top: 10px;
+  vertical-align: middle;
+  font-size: 18px;/*サイズ*/
+    margin-bottom: 0;
+}
+
+
+
+/*
+img#cancel {
+    transform: translate3d(0, 0, 0);
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    position: fixed;
+    right: 1em;
+    bottom: 0em;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+*/
