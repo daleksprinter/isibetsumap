@@ -1,4 +1,4 @@
-.thumbnail {
+.photo {
     margin: 0;
     padding: 0;
     position: relative;
@@ -7,7 +7,7 @@
 .unselected {
     background-color: Transparent;
     background-repeat: no-repeat;
-    border: solid 0.1px transparent;
+    border: solid 1px transparent;
     overflow: hidden;
     margin: 0px;
     padding: 0px;
@@ -16,43 +16,12 @@
 .selected {
     background-color: Transparent;
     background-repeat: no-repeat;
-    border: solid 0.1px #80bf01;
+    border: solid 1px #80bf01;
     overflow: hidden;
     margin: 0px;
     padding: 0px;
 }
 
-.thumbnail .disabled_checkbox .selected {
-  /* チェックボックスの位置は絶対位置にします。 */
-  position: absolute;
-  /* チェックボックスは、親要素の右上から12pxの位置に配置します。 */
-  top: 12px;
-  right: 12px;
-}
-
-/*チェックボックス*/
-/*
-.checkbox img{
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50px;
-}
-.thumbnail .checkbox{
-    position: absolute;
-    top: 20px;
-    right: 40px;
-}
-*/
-
-
-/*
-.checkbox img{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-}
-*/
 
 /*
 .button1 img {
@@ -69,7 +38,7 @@
 }
 */
 
-/*ルート選択ボタン*/
+/*複数選択ボタン*/
 .button1{
      width: 80px;
     height: 80px;
@@ -86,11 +55,13 @@
 }
 
 
-/*決定ボタン*/
+/*ルートを見るボタン*/
 ons-bottom-toolbar#done{
     height:80px;
     background:#2196F3;
 }
+
+
 
 #done-text{
     font-size: 20px;
