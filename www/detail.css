@@ -1,0 +1,10 @@
+.detail_text{
+  position:relative;
+  left:15px;
+  width: 350px;
+}
+
+
+#detail .page__background {
+  background-color: white;
+}

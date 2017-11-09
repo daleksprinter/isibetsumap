@@ -54,10 +54,12 @@ transition: .4s;
 .carousel  {
     position:absolute;
     top:450px;
+    width:450px;
+
 }
 
 .crsl{
-width=200px;
+width:450px;
 }
 
 #rootmap{
@@ -72,12 +74,7 @@ width=200px;
     
   
 }
-.button1{
-    position: fixed;
-    top: 70px;
-    z-index: 10;
-    width:50px;
-}
+
 
 
 

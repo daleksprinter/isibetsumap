@@ -28,7 +28,7 @@
   <feature name="LocalStorage">
     <param name="ios-package" value="CDVLocalStorage"/>
   </feature>
-  <preference name="UIWebViewDecelerationSpeed" value="normal"/>
+  <preference name="UIWebViewDecelerationSpeed" value="fast"/>
   <preference name="monaca:AndroidIsPackageNameSeparate" value="false"/>
   <preference name="monaca:targetFamilyiPhone" value="1"/>
   <preference name="monaca:targetFamilyiPad" value="1"/>

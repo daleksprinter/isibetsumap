@@ -1,9 +1,7 @@
 
-
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "home"){
-
-
+    
 　　　　$("#photo").empty();//子要素の初期化
         var db = openDatabase("database", "1.0", "testdatabase", 1000000);
         db.transaction(
@@ -33,4 +31,6 @@ function img(src,width,height){
     image.height = height;
     return image;
 }
+
+
 

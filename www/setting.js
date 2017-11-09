@@ -40,3 +40,31 @@ function flug(id){
         if(id.checked) return 0;
         else return 1;
 }
+
+//絞り込みメニューを表示するための関数
+//従来の絞り込み画面に行きたい場合はrefine_thumbnail()を当てる
+function menu(){
+
+   if($('#slider_menu').hasClass('menu_off')){
+    $('#slider_menu').removeClass('menu_off');
+   
+    $('#slider_menu').animate({'marginTop':'70px'});
+    
+    $("body").on('touchmove.noScroll', function(e) {
+    e.preventDefault();
+    });
+    
+    console.log('a');
+   
+  }else{
+  
+    $('#slider_menu').animate({'marginTop':'0px'});
+    $('#slider_menu').addClass('menu_off');
+
+    $("body").off('.noScroll');
+    
+    console.log('b');
+  }
+
+
+}

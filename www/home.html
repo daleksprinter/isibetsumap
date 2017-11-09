@@ -2,10 +2,18 @@
     <ons-toolbar>
         <div class="center">石別マップ</div>
         <div class="right" style="line-height: 44px">
-        <ons-button id = 'refine' modifier="quiet" onclick="myNavigator.pushPage('setting.html')">絞り込み</ons-button>
+        <ons-button id = 'refine' modifier="quiet" onclick="menu()">絞り込み</ons-button>
         </div>
     </ons-toolbar>
-    
+    <div id='slider_menu' calss='menu_off' >
+        <ons-button>テスト</ons-button>
+        <ons-button>テスト</ons-button>
+        <ons-button>テスト</ons-button>
+        <ons-button>テスト</ons-button>
+    </div>
+     
+
+
         <div id = photo> </div><br>
         <div class = 'button1'>
             <ons-button id = "spot" onclick = "spot_select()">コース選択</ons-button>
