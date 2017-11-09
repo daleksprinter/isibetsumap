@@ -103,42 +103,59 @@ document.addEventListener('pageinit',function(page){
       carousel.addEventListener('postchange',function(event){
         navigator.geolocation.getCurrentPosition( routecalc , errorFunc , optionObj ) ;
       });
+
+      //カルーセルのタッチ操作イベントが親ノードに伝達しないようにする
+　　　　　carousel.addEventListener('touchmove',function(event){
+    　　　　　event.preventDefault();
+　　　　　});
+        //マップのタッチ操作イベントが親ノードに伝達しないようにする
+        $('#rootmap')[0].addEventListener('touchmove',function(event){
+        	event.preventDefault();
+        });
   
       //リストの数だけカローセルアイテムを生成
      for(var key in list){
          
          var carousel_item = document.createElement('ons-carousel-item');//カルーセルアイテム要素を作成
          carousel_item.setAttribute('class','crsl');//カルーセルアイテムにクラスを割り当て
-
-　　　　　//カルーセルのタッチ操作イベントが上位ノードに伝達しないようにする
-　　　　　carousel.addEventListener('touchmove',function(event){
-    　　　　　event.preventDefault();
-　　　　　})
-
-       
-       //長押しでカローセル削除する処理をカルーセルアイテムに割り当て
-         longtap(carousel_item,function(elm){
-        
-            if(carousel.itemCount > 1){
-               marker_list.forEach(function(marker,i){
-                  if(marker.get('id')　==　get_key(carousel.getActiveIndex())){
-                     marker.setMap(null);
-                  }
-              });
-            delete list[id];
-            carousel.setActiveIndex(0);
-            elm.remove;
-            carousel.refresh();
-         }
-       });
-     
- 
+　　　　　  
          //カルーセルアイテムにスポット情報を追加
          var card = document.createElement('div');
          card.appendChild(img(list[key].imagedata,130,130));
          card.appendChild(text(key,'txt'));
          carousel_item.setAttribute('id',key);
       　 carousel_item.appendChild(card);
+
+
+       //長押しでカローセル削除する処理をカルーセルアイテムに割り当て
+  　　　　carousel_item.addEventListener('touchstart',function(event){
+              start = new Date().getTime();
+         });
+
+        carousel_item.addEventListener('touchend',function(event){
+           var id = this.id
+           if(start){
+              end = new Date().getTime();
+              longpress = (end - start < 300) ? false : true;
+              //長押し判定がされた場合の処理
+              if(longpress){
+              	//カルーセルの要素数が１未満にならないよう制御
+                 if(carousel.itemCount > 1){
+                 	//全マーカーを取得し、押されたカルーセルアイテムのIDと同じIDを持つマーカーを探す
+                     marker_list.forEach(function(marker,i){
+                       if(marker.get('id')　==　id){
+                         marker.setMap(null);//マーカーの削除処理
+                       }
+                    });
+                     delete list[id];//リストからスポットデータの削除
+                     this.remove();//カルーセルアイテムの削除処理
+                     carousel.setActiveIndex(0);
+                     carousel.refresh();
+                }
+              }
+           }
+        });
+ 　　
 
       　　//カルーセルにカルーセルアイテムを追加
          carousel.appendChild(carousel_item);
@@ -233,20 +250,4 @@ function get_idx(k){
     }
   }
 
-  function longtap(elm,func){
-    elm.addEventListener('touchstart',function(event){
-    start = new Date().getTime();
-    });
-
-    elm.addEventListener('touchend',function(event){
-    var id = this.id
-    if(start){
-    end = new Date().getTime();
-    longpress = (end - start < 300) ? false : true;
-
-    if(longpress){
-    func(elm);
-    }
-    }
-    });
-}
+ 
