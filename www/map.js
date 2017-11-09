@@ -117,20 +117,21 @@ document.addEventListener('pageinit',function(page){
 
        
        //長押しでカローセル削除する処理をカルーセルアイテムに割り当て
-       longtap(carousel_item,function(elm){
+         longtap(carousel_item,function(elm){
         
-        if(carousel.itemCount > 1){
-            marker_list.forEach(function(marker,i){
-               if(marker.get('id')　==　get_key(carousel.getActiveIndex())){
-                  marker.setMap(null);
-               }
-            });
+            if(carousel.itemCount > 1){
+               marker_list.forEach(function(marker,i){
+                  if(marker.get('id')　==　get_key(carousel.getActiveIndex())){
+                     marker.setMap(null);
+                  }
+              });
             delete list[id];
             carousel.setActiveIndex(0);
             elm.remove;
             carousel.refresh();
          }
        });
+     
  
          //カルーセルアイテムにスポット情報を追加
          var card = document.createElement('div');
@@ -230,23 +231,22 @@ function get_idx(k){
         console.log(t);
         t++;
     }
+  }
 
-
-function longtap(elm,func){
+  function longtap(elm,func){
     elm.addEventListener('touchstart',function(event){
-      start = new Date().getTime();
+    start = new Date().getTime();
     });
 
     elm.addEventListener('touchend',function(event){
-      var id = this.id
-      if(start){
-        end = new Date().getTime();
-       
-        longpress = (end - start < 300) ? false : true;
+    var id = this.id
+    if(start){
+    end = new Date().getTime();
+    longpress = (end - start < 300) ? false : true;
 
-        if(longpress){
-           func(elm);
-        }
-      }
+    if(longpress){
+    func(elm);
+    }
+    }
     });
 }
