@@ -11,6 +11,7 @@
     position:absolute;
     top:45vw;
 	background-position: center;
+    left:10px;
 
 }
 
@@ -20,9 +21,19 @@
 
 }
 
+.thumbnail{
+    position: relative;
+}
+
 .photo {
     margin: 0;
     padding: 0;
+}
+
+.thumbnail .check{
+    position: absolute;
+    top:12px;
+    right: 12px;
 }
 
 .unselected {
