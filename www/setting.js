@@ -1,10 +1,10 @@
 //絞り込み用の処理
 function refine_thumbnail(){
-   
+
    //季節、時間判定用の現在時刻の取得
     var date = new Date();
     var time = date.getHours()*100 + date.getMinutes();
-    
+
     function get_timezone(date){
    　　　 if(6 < date || date < 18)return 'noon';
     　　 else return 'noon';
@@ -16,21 +16,22 @@ function refine_thumbnail(){
           if(7 <= date && date <10) return 'summer';
           else return 'summer';
     }
-    
-    
-    
+
+
+
     var db = openDatabase("database", "1.0", "testdatabase", 1000000);
      db.transaction(
          function(tr){
              tr.executeSql("SELECT Spot.id,Spot.imagedata FROM Spot INNER JOIN Tag ON Spot.tagid = Tag.id WHERE (((Tag.opentime < ? AND ? < Tag.endtime) OR Tag.endtime is null) OR 1= ?) AND (1 = ? OR Tag.slope = 'false') AND (1 = ? OR (Spot.time = ? AND Spot.season = ? )) ",[time,time,flug(open),flug(slope),flug(season),get_timezone(date.getHours()),get_season(date.getMonth()+1)],function(rt,rs){
                var l = rs.rows.length;
                 $("#photo").empty();
-                for(var i=0;i<l;i++){
-                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-36)/3,(screen.width-36)/3) );
+
+                for(var i=0;i<l*5;i++){
+                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i%l).id,rs.rows.item(i%l).imagedata,(screen.width-24)/3,(screen.width-24)/3) );
                  }
                myNavigator.popPage();
              });
-     });  
+     });
 }
 
 
