@@ -39,7 +39,8 @@
 .unselected {
     background-color: Transparent;
     background-repeat: no-repeat;
-    border: solid 0.1px transparent;
+    border: solid 0.3px transparent;
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
