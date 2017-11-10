@@ -1,9 +1,8 @@
 var list={};//コース選択されたスポットデータのリスト
-var list_count;
+
 var findLi;//サムネイル要素
-var key_val = {};//インデックスとキーの連想配列
-var val_key={};
-var index;
+var findli_child;//サムネイル要素の数
+
 
 function spot_select(){
     //完了、キャンセルボタンを表示
@@ -17,11 +16,11 @@ function spot_select(){
       delete list[key];
     }
 
-     list_count = $("#photo")[0].childElementCount;
+     findli_child = $("#photo")[0].childElementCount;
      findLi =$('#photo')[0].children;
 
-     //全てのサムネイルに押下されたら選択される関数を割り当て
-     for (var i = 0; i < list_count; i++){
+     //全てのサムネイルにcheck()を割り当て
+     for (var i = 0; i < findli_child; i++){
         findLi[i].setAttribute('onclick','check(this)');
      }
 }
@@ -48,7 +47,7 @@ function check(elm){
 
 //完了ボタンを押した時の処理
 function done(){
-  if(Object.keys(list).length === 0){
+  if(Object.keys(list).length == 0){
         alert("選択されていません");
     }else{
         myNavigator.pushPage('map.html');
@@ -57,7 +56,7 @@ function done(){
         $('#cancel')[0].style.display="none";
         $('#refine')[0].style.display="inline";
 
-        for(var i = 0; i<list_count;i++){
+        for(var i = 0; i<findli_child;i++){
             findLi[i].setAttribute('class','unselected');
             findLi[i].setAttribute('onclick','load_detail(this.id)');
         }
@@ -70,7 +69,7 @@ function cancel(){
     $('#cancel')[0].style.display="none";
     $('#refine')[0].style.display="inline";
 
-    for(var i = 0; i<list_count;i++){
+    for(var i = 0; i<findli_child;i++){
         findLi[i].setAttribute('class','unselected');
         findLi[i].setAttribute('onclick','load_detail(this.id)');
     }
@@ -80,9 +79,13 @@ var root_map;
 var directionsRenderer = new google.maps.DirectionsRenderer();
 var directionsService = new google.maps.DirectionsService();
 
+
+var marker_list=new google.maps.MVCArray();;
+
+
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "map"){
-     index=0;
+
        //初期マップの中心地用の座標
        var lati = 41.733614;
        var long = 140.578877;
@@ -95,69 +98,90 @@ document.addEventListener('pageinit',function(page){
         });
         directionsRenderer.setMap(root_map);
 
-      //親要素にタッチイベントが伝達しないようにする
-      carousel.addEventListener('touchmove',function(event){
-        event.preventDefault();
-      });
 
       //カローセルが移動した時の処理
       carousel.addEventListener('postchange',function(event){
         navigator.geolocation.getCurrentPosition( routecalc , errorFunc , optionObj ) ;
       });
 
+      //カルーセルのタッチ操作イベントが親ノードに伝達しないようにする
+　　　　　carousel.addEventListener('touchmove',function(event){
+    　　　　　event.preventDefault();
+　　　　　});
+        //マップのタッチ操作イベントが親ノードに伝達しないようにする
+        $('#rootmap')[0].addEventListener('touchmove',function(event){
+            event.preventDefault();
+        });
+
       //リストの数だけカローセルアイテムを生成
      for(var key in list){
-         key_val[index] = key;
-         val_key[key]=index;
-         index++;
 
-         var carousel_item = document.createElement('ons-carousel-item');
-
-       //長押しでカローセル削除処理
-        carousel_item.addEventListener('touchstart', function(event) {
-            start = new Date().getTime();
-        });
-
-        carousel_item.addEventListener('touchend', function(event) {
-
-        if (start) {
-            end = new Date().getTime();
-            longpress = (end - start < 300) ? false : true;
-
-            if(longpress && index > 1){
-              //  data = list[this.id];
-                this.remove();
-                carousel.refresh();
-                index -= 1;
-                console.log(index);
-            }
-        }
-        });
-
+         var carousel_item = document.createElement('ons-carousel-item');//カルーセルアイテム要素を作成
+         carousel_item.setAttribute('class','crsl');//カルーセルアイテムにクラスを割り当て
+　　　　　
+         //カルーセルアイテムにスポット情報を追加
+         var card = document.createElement('div');
          carousel_item.appendChild(img(list[key].imagedata,130,130));
       　 carousel_item.appendChild(text(list[key].title,'txt'));
-      // carousel_item.appendChild(text(list[key].info,'txt')); //よくわからん
-         document.getElementById('carousel').appendChild(carousel_item);
+         carousel_item.setAttribute('id',key);
+      　 carousel_item.appendChild(card);
+      　 document.getElementById('carousel').appendChild(carousel_item);
 
 
-      //マップにマーカーを設置
+       //長押しでカローセル削除する処理をカルーセルアイテムに割り当て
+  　　　　carousel_item.addEventListener('touchstart',function(event){
+              start = new Date().getTime();
+         });
+
+        carousel_item.addEventListener('touchend',function(event){
+           var id = this.id
+           if(start){
+              end = new Date().getTime();
+              longpress = (end - start < 300) ? false : true;
+              //長押し判定がされた場合の処理
+              if(longpress){
+              	//カルーセルの要素数が１未満にならないよう制御
+                 if(carousel.itemCount > 1){
+                 	//全マーカーを取得し、押されたカルーセルアイテムのIDと同じIDを持つマーカーを探す
+                     marker_list.forEach(function(marker,i){
+                       if(marker.get('id')　==　id){
+                         marker.setMap(null);//マーカーの削除処理
+                       }
+                    });
+                     delete list[id];//リストからスポットデータの削除
+                     this.remove();//カルーセルアイテムの削除処理
+                     carousel.setActiveIndex(0);
+                     carousel.refresh();
+                }
+              }
+           }
+        });
+ 　　
+
+      　　//カルーセルにカルーセルアイテムを追加
+         carousel.appendChild(carousel_item);
+
+
+　　　//マーカーに関する処理
+      　//マップにマーカーを設置
         lati = list[key].latitude;
         long = list[key].longitude;
         latlng = new google.maps.LatLng(lati,long);
 
-        var marker = new google.maps.Marker({position: latlng, map: root_map,id:index});
+        var marker = new google.maps.Marker({position: latlng, map: root_map,id:key,label:{text:key}});
+        marker_list.push(marker);
+
+
+　　　　　//マーカーがタップされた時の処理。対応するカルーセルを表示する
         marker.addListener( "click", function ( argument ) {
-            console.log( this.get('id') );
-            carousel.setActiveIndex(this.get('id'));
+             carousel.setActiveIndex(get_idx(this.get('id')));
         }) ;
-        console.log(index);
-        console.log(val_key);
-        console.log(key_val);
+
 
      }
 
-　　　//追加のマップ操作
-      navigator.geolocation.getCurrentPosition(routecalc, errorFunc , optionObj ) ;
+　　　//カルーセルの追加を完了したあとルート探索
+     navigator.geolocation.getCurrentPosition(routecalc, errorFunc , optionObj ) ;
 
     }
 });
@@ -183,12 +207,12 @@ function errorFunc(error){
 
 var optionObj = {};
 
-//２点間のルートをマップに描画
+//現在位置から表示されているカルーセルへのルートをマップに描画
 function routecalc(position){
-  // 開始地点の座標を指定
+  // 開始地点の座標（現在位置）を指定
         var start = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-   // 目的地点の座標を指定
-        var goal = new google.maps.LatLng(list[key_val[carousel.getActiveIndex()]].latitude,list[key_val[carousel.getActiveIndex()]].longitude);
+   // 目的地点の座標（表示されているカルーセル）を指定
+        var goal = new google.maps.LatLng(list[get_key(carousel.getActiveIndex())].latitude,list[get_key(carousel.getActiveIndex())].longitude);
 
         // origin と destination に変数を指定
         var request = {
@@ -198,13 +222,33 @@ function routecalc(position){
         };
  　　　　
         directionsService.route(request, function(result, status) {
-            console.log(status);
-
-              if (status == google.maps.DirectionsStatus.OK) {
-
-
-             directionsRenderer.setDirections(result);
-             }
+        　 if (status == google.maps.DirectionsStatus.OK) {
+             　　directionsRenderer.setDirections(result);
+          }
         });
-
 }
+
+//インデックス番号からIDを取得する
+function get_key(i){
+  var t=0;
+  for(var key in list){
+    if(t == i){
+        return key;
+    }
+    t++;
+  }
+}
+
+//IDからインデックス番号を取得する
+function get_idx(k){
+    var t=0;
+    for(var key in list){
+        if(k == key){
+            return t;
+        }
+        console.log(t);
+        t++;
+    }
+  }
+
+ 

@@ -53,9 +53,9 @@ transition: .4s;
     position:absolute;
     top:350px;
     width: 100%;
-    margin: 10px 0;
-     box-shadow:5px 5px 10px;
-     border:1px solid #000;
+    margin: 20px 0px 0px;
+    box-shadow:5px 5px 10px;
+    border:1px solid #000;
 }
 
 ons-carousel-item {
