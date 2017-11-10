@@ -21,7 +21,7 @@ document.addEventListener('pageinit', function (page) {
                    */
                     //現在の画像を5倍分表示して量ごまかし
                     for (var i = 1; i < l * 5; i++) {
-                        $("#photo")[0].appendChild(create_thumbnail(rs.rows.item(i % l).id, rs.rows.item(i % l).imagedata, (screen.width - 6) / 3, (screen.width - 6) / 3));
+                        $("#photo")[0].appendChild(create_thumbnail(rs.rows.item(i % l).id, rs.rows.item(i % l).imagedata, (screen.width - 24) / 3, (screen.width - 24) / 3));
 
                     }
                 });
