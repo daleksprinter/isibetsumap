@@ -9,14 +9,17 @@ document.addEventListener('pageinit', function (page) {
                 tr.executeSql("SELECT id,imagedata FROM Spot", [], function (rt, rs) {
                     var l = rs.rows.length;
                     //作ったサムネイル要素を追加
-                    $("#photo")[0].appendChild(create_thumbnail(rs.rows.item(0).id, rs.rows.item(0).imagedata, (screen.width - 0.2), (screen.width - 0.2)));
+
+                    //ヒーローイメージをランダムな画像で表示
+                    var hero = Math.floor( Math.random() * (l + 1) );
+                    $("#firstPhoto")[0].appendChild(create_thumbnail(rs.rows.item(hero).id, rs.rows.item(hero).imagedata, (screen.width - 1), (screen.width - 1)));
 
                     /*
                   正規画像が揃ったらコメントアウトを外す
                 for(var i=1;i<l;i++){
                  $("#photo")[0].appendChild( create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-0.2)/3,(screen.width-0.2)/3));
                    */
-                    //現在の画像を５倍分表示して量ごまかし
+                    //現在の画像を5倍分表示して量ごまかし
                     for (var i = 1; i < l * 5; i++) {
                         $("#photo")[0].appendChild(create_thumbnail(rs.rows.item(i % l).id, rs.rows.item(i % l).imagedata, (screen.width - 6) / 3, (screen.width - 6) / 3));
 

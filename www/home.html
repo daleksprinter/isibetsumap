@@ -1,6 +1,6 @@
 <ons-page id = home>
    <ons-toolbar>
-       <div class="center">石別マップ</div>
+       <div class="center">Phoston</div>
        <div class="right">
      <ons-toolbar-button id = 'refine' modifier="quiet" onclick="myNavigator.pushPage('setting.html')">絞り込み</ons-toolbar-button>
    </div>
@@ -11,8 +11,12 @@
    </div>
    -->
    </ons-toolbar>
-       <div id = photo> </div><br>
+       <div class = "hero">
+           <h1>石別へようこそ。</h1>
+           <div id = firstPhoto></div>
+       </div>
 
+       <div id = photo> </div>
 
        <!-- <ons-button id = "spot" onclick = "spot_select()" modifier="light">コース選択</ons-button> -->
        <!-- <img id="spot" onClick="spot_select()" src="images/button1.png" > -->
@@ -24,9 +28,16 @@
       <!-- <ons-button id = "done" style="display: none;" onclick = "done()">決定</ons-button> -->
 
 
+<!--
+   ツールバーを利用
     <ons-bottom-toolbar id="done" style="display:none;" onClick="done()" modifier = "transparent">
      <div id = "done-text" style="text-align: center; line-height:80px">ルートを見る</div>
     </ons-bottom-toolbar>
+
+-->
+    <ons-button id="done" style="display:none;" onClick="done()" modifier="large--cta">ルートを見る
+    </ons-button>
+
      <!--  <img id = "cancel" style="display: none;" onclick = "cancel()" src="images/cancel.png"> -->
     <ons-fab position="bottom right" id="cancel" style="display:none;" onClick = "cancel()">
        <ons-icon icon="fa-times" size=50px ></ons-icon>
