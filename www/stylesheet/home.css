@@ -1,0 +1,64 @@
+#herophoto{
+ position:relative;
+}
+.herotitle{
+	position:absolute;
+	top:20%;
+	left:5%;
+	color:white;
+}
+
+.heroimg{
+
+}
+#photo{
+
+}
+.thumb{
+	float: left;
+	position:relative;
+	width:33%;
+
+}
+.icon{
+	position:absolute;
+	color:white;
+	top:3%;
+	left:70%;
+	z-index:10;
+}
+
+img{
+    margin: 0;
+	padding: 0;
+    vertical-align: bottom;
+}
+.unselected{
+background-color: Transparent;
+background-repeat:no-repeat;
+border: solid 3px transparent;
+overflow: hidden;
+margin : 3px;
+padding : 0px;
+}
+
+
+
+.selected{
+background-color: Transparent;
+background-repeat:no-repeat;
+border:solid 3px #80bf01;
+overflow: hidden;
+margin : 3px;
+padding : 0px;
+}
+
+
+
+
+.button1{
+   position: absolute;
+    top:50px;
+    z-index: 10;
+    width:50px;
+}
