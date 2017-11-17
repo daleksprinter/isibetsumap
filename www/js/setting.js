@@ -43,7 +43,7 @@ function flug(id){
 
 //絞り込みメニューを表示するための関数
 //従来の絞り込み画面に行きたい場合はrefine_thumbnail()を当てる
-function menu(){
+/*function menu(){
 
    if($('#slider_menu').hasClass('menu_off')){
     $('#slider_menu').removeClass('menu_off');
@@ -65,4 +65,18 @@ function menu(){
     
     console.log('b');
   }
-};
+};*/
+var menuopen=false;
+function menu(){
+  
+  if(menuopen){
+    $('#menus')[0].style.display='none';
+    menuopen=false;
+  }else{
+    menuopen=true;
+    $("#home").animate({scrollTop:0},"300");
+    $('#menus')[0].style.display='inline';
+ 
+  }
+
+}

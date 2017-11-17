@@ -1,6 +1,41 @@
 
 document.addEventListener('pageinit',function(page){
    if(page.target.id == "home"){
+    
+    var ref = $('#refine')[0];
+    var isScrll = false;
+   
+ 
+ 　/*   $(window).on('scroll', function() {
+    	console.log('a');
+    
+     ref.style.display='none'
+     isScrll = true;
+     var setisscrll = setTimeout(function(){
+     	isScrll=false;
+     },200);
+
+     var timeoutId = setTimeout( function () {
+　　　　　　　if(isScrll == false){
+           　　ref.style.display='inline';
+		　　}
+	}, 700 ) ;
+	
+    });
+*/
+  /*  $('body').on('touchmove', function() {
+         ref.style.display='none'
+          isScrll = true;
+          var setisscrll = setTimeout(function(){
+     	   isScrll=false;
+          },200);
+          var timeoutId = setTimeout( function () {
+　　　	　　　if(isScrll == false){
+          　　　　ref.style.display='inline';
+		　　　}
+	　　　　}, 700 ) ;
+    });*/
+
 　　　　$("#photo").empty();//子要素の初期化
         var db = openDatabase("database", "1.0", "testdatabase", 1000000);
         db.transaction(
@@ -16,10 +51,10 @@ document.addEventListener('pageinit',function(page){
                  var time = new Date();
                  $('#herotime')[0].textContent=String(time.getFullYear()+'/'+time.getMonth()+'/'+time.getDate()+' '+conv_day(time.getDay())+'.')
                  
-                 for(var i=0;i<l;i++){
+                 for(var i=0;i<l*5;i++){
         
                   //作ったサムネイル要素を追加
-                 $('#photo')[0].appendChild(create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-20)/3,(screen.width-20)/3));
+                 $('#photo')[0].appendChild(create_thumbnail(rs.rows.item(i%l).id,rs.rows.item(i%l).imagedata,(screen.width-20)/3,(screen.width-20)/3));
                  
                  //$('#photo')[0].appendChild(create_thumbnail(rs.rows.item(i).id,rs.rows.item(i).imagedata,(screen.width-36)/3,(screen.width-36)/3));
                  }
@@ -33,7 +68,7 @@ function create_thumbnail(id,src,width,height){
     div.setAttribute('class','thumb');
     var button = document.createElement('button');
     button.setAttribute('id',id);
-    button.setAttribute('class', 'unselected');
+    button.setAttribute('class','unselected');
     button.setAttribute('onclick','load_detail(this.id)');
     button.appendChild(img(src,width,height));
     div.appendChild(button);
